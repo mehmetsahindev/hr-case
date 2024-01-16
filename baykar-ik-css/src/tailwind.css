@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  * {
+    @apply box-border;
+  }
+
+  .btn {
+    @apply flex items-center justify-center w-fit h-fit relative z-[50];
+
+    &.btn-outline {
+      @apply border-2;
+    }
+
+    &.btn-link {
+      .btn-text-container {
+        @apply !px-[8px];
+      }
+    }
+
+    &.btn-m {
+      @apply p-[12px] rounded-[8px];
+
+      .btn-icon-left {
+        @apply w-[24px] h-[24px] flex items-center justify-center;
+      }
+
+      .btn-text-container {
+        @apply block px-[16px] font-[500] text-[16px]/[24px] tracking-[0.5px];
+      }
+
+      .btn-icon-right {
+        @apply w-[24px] h-[24px] flex items-center justify-center;
+      }
+    }
+    &.btn-l {
+      @apply p-[16px] rounded-[8px];
+
+      .btn-icon-left {
+        @apply w-[24px] h-[24px] flex items-center justify-center;
+      }
+
+      .btn-text-container {
+        @apply block px-[16px] font-[500] text-[20px]/[24px] tracking-[0.5px];
+      }
+
+      .btn-icon-right {
+        @apply w-[24px] h-[24px] flex items-center justify-center;
+      }
+    }
+    &.btn-xl {
+      @apply px-[24px] py-[20px] rounded-[8px];
+
+      .btn-icon-left {
+        @apply w-[24px] h-[24px] flex items-center justify-center;
+      }
+
+      .btn-text-container {
+        @apply block px-[24px] font-[500] text-[24px]/[24px] tracking-[0.5px];
+      }
+
+      .btn-icon-right {
+        @apply w-[24px] h-[24px] flex items-center justify-center;
+      }
+    }
+
+    &.btn-primary {
+      &.btn-link {
+        @apply text-amber-900;
+      }
+      &.btn-outline {
+        @apply text-amber-900 border-amber-900 bg-transparent;
+      }
+      &.btn-filled {
+        @apply text-white bg-amber-900;
+      }
+    }
+    &.btn-white {
+      &.btn-link {
+        @apply text-white;
+      }
+      &.btn-outline {
+        @apply text-white border-white bg-transparent;
+      }
+      &.btn-filled {
+        @apply text-blue-gray-900 bg-white;
+      }
+    }
+    &.btn-dark {
+      &.btn-link {
+        @apply text-blue-gray-900;
+      }
+      &.btn-outline {
+        @apply text-blue-gray-900 border-blue-gray-900 bg-transparent;
+      }
+      &.btn-filled {
+        @apply text-white bg-blue-gray-900;
+      }
+    }
+  }
+
+  .bg-triangle {
+    background: url("./assets/img/Rectangle_31.png");
+    @apply bg-no-repeat bg-right-bottom bg-contain;
+  }
+  .bg-waves {
+    background: url("./assets/svg/Waves.svg");
+    @apply bg-no-repeat bg-left-bottom bg-cover lg:bg-right-bottom lg:bg-contain;
+  }
+  .bg-map {
+    background-image: url("./assets/svg/map.svg");
+    @apply bg-no-repeat bg-left-top bg-cover lg:bg-center lg:bg-contain;
+  }
+  .shadow-card {
+    box-shadow: 0px 0px 15px 0px #ffffff12, 0px 25px 50px -12px #ffffff40;
+  }
+  .shadow-modal {
+    box-shadow: 0px 0px 15px 0px #00000012, 25px 0px 50px -12px #0000001a;
+  }
+  .shadow-container {
+    box-shadow: 0px 0px 10px 0px #00000012, 0px 20px 25px -5px #0000001a;
+  }
+  .shadow-desktop {
+    box-shadow: 0px 0px 15px 0px #00000012, 0px 25px 50px -12px #00000040;
+  }
+  .shadow-testimonial {
+    box-shadow: 0px 0px 6px 0px #00000012, 0px 10px 15px -3px #0000001a;
+  }
+  .shadow-button {
+    box-shadow: 0px 0px 4px 0px #00000012, 0px 4px 6px -1px #0000001a;
+  }
+  .shadow-custom-1 {
+    box-shadow: 0px 0px 10px 0px #00000012, 0px 20px 25px -5px #0000001a;
+  }
+  .shadow-custom-2 {
+    box-shadow: 0px 0px 15px 0px #00000012, 0px 25px 50px -12px #00000040;
+  }
+  .section-container {
+    @apply max-w-screen-2xl mx-auto px-[16px] lg:px-[80px] py-[48px] lg:py-[80px];
+  }
+
+  .testimonialsSlider .slick-track {
+    @apply flex gap-[16px] lg:gap-[24px];
+  }
+  .testimonialsSlider .slick-slide {
+    height: inherit !important;
+  }
+  .testimonialsSlider .slick-slide > div {
+    @apply h-full pb-[40px];
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
