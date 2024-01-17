@@ -8,28 +8,51 @@ const App = () => {
 
   const [questionIndex, setQuestionIndex] = useState(0);
   const [seconds, setSeconds] = useState(30);
+  const [timerStatus, setTimerStatus] = useState(false);
   const [answer, setAnswer] = useState(null);
   const [result, setResult] = useState([]);
   const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
-    if (isLoading === false) {
-      setSeconds(30);
+    let interval;
 
-      const interval = setInterval(() => {
+    if (timerStatus) {
+      interval = setInterval(() => {
         setSeconds((prevSeconds) => (prevSeconds > 0 ? prevSeconds - 1 : 0));
       }, 1000);
+    } else {
+      clearInterval(interval);
+    }
 
-      return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [timerStatus]);
+
+  useEffect(() => {
+    if (isLoading === false) {
+      startTimer();
+    } else {
+      stopTimer();
     }
   }, [isLoading]);
 
-  const resetTimer = () => {
-    setSeconds(30);
+  useEffect(() => {
+    if (seconds === 0) {
+      nextQuestion();
+    }
+  }, [seconds]);
+
+  const startTimer = () => {
+    setTimerStatus(true);
   };
 
-  const test = () => {
-    return seconds - 1;
+  const stopTimer = () => {
+    setTimerStatus(false);
+  };
+
+  const resetTimer = () => {
+    setSeconds(30);
   };
 
   const canAnswer = () => {
@@ -59,14 +82,16 @@ const App = () => {
       },
     ]);
 
-    //resetTimer();
+    resetTimer();
     setAnswer(null);
 
     if (questionIndex + 1 === questions.length) {
       setQuestionIndex(0);
       setIsCompleted(true);
+      stopTimer();
     } else {
       setQuestionIndex(questionIndex + 1);
+      startTimer();
     }
   };
 
@@ -78,6 +103,8 @@ const App = () => {
     setIsCompleted(false);
 
     reloadQuestions();
+
+    startTimer();
   };
 
   return (
@@ -118,14 +145,17 @@ const App = () => {
                 {isCompleted ? (
                   <>
                     <div className="overflow-auto">
-                      <div class="relative overflow-x-auto sm:rounded-lg">
-                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                      <div className="relative overflow-x-auto sm:rounded-lg">
+                        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                              <th scope="col" class="px-6 py-3 max-w-[200px]">
+                              <th
+                                scope="col"
+                                className="px-6 py-3 max-w-[200px]"
+                              >
                                 Question
                               </th>
-                              <th scope="col" class="px-6 py-3 text-end">
+                              <th scope="col" className="px-6 py-3 text-end">
                                 Answer
                               </th>
                             </tr>
@@ -133,14 +163,17 @@ const App = () => {
                           <tbody>
                             {result.map((result, index) => {
                               return (
-                                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                <tr
+                                  className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+                                  key={`result-${index}`}
+                                >
                                   <th
                                     scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 dark:text-white w-2/3"
+                                    className="px-6 py-4 font-medium text-gray-900 dark:text-white w-2/3"
                                   >
                                     {result.question}
                                   </th>
-                                  <td class="px-6 py-4 w-1/3 text-end whitespace-nowrap">
+                                  <td className="px-6 py-4 w-1/3 text-end whitespace-nowrap">
                                     {result.answer}
                                   </td>
                                 </tr>
