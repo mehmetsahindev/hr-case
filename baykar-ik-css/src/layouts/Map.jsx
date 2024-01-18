@@ -5,7 +5,7 @@ import MapShoes from "../assets/img/map-shoes.png";
 const Map = () => {
   return (
     <div className="py-[32px] lg:py-[80px] relative flex justify-center bg-amber-900 mt-[-1px]">
-      <div className="bg-map h-[717px] w-full relative flex justify-center items-center">
+      <div className="bg-map section-container !p-0 h-[717px] w-full relative flex justify-center items-center">
         {/* <img src={MapImage} className="min-w-[1049px]" /> */}
         <div>
           <div className="w-[24px] h-[24px] border-[3px] border-lime-400 rounded-full absolute top-[150px] left-[23%] lg:top-[47%] lg:left-[23%] hidden lg:block"></div>
